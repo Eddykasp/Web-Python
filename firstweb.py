@@ -1,28 +1,22 @@
-html_template = '''
-<!doctype html>
-<html>
-<head>
-    <title>Hello</title>
-    <meta name="description" content="A webpage made with python">
-    <meta name="keywords" content="python html hello world">
-    <meta charset="UTF8">
-</head>
-<body>
-    <p>Hello {name}!</p>
-</body>
-</html>'''
+hello_template = "hello_template.html"
 
 def main():
     name = input('What is your name? ')
-    content = html_template.format(**locals())
+    content = fileToStr(hello_template).format(**locals())
     browselocal(content)
 
+def fileToStr(filename):
+    file = open(filename, 'r')
+    content = file.read()
+    file.close()
+    return content
+
 def strToFile(text, filename):
-    output_file = open(filename)
+    output_file = open(filename, 'w')
     output_file.write(text)
     output_file.close()
 
-def browselocal(content, filename='htmlTemp.html'):
+def browselocal(content, filename='temp/htmlTemp.html'):
     import webbrowser, os.path
     strToFile(content, filename)
     webbrowser.open('file:///'+os.path.abspath(filename))
