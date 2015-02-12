@@ -1,4 +1,4 @@
-hello_template = "hello_template.html"
+hello_template = "templates/hello_template.html"
 
 def main():
     name = input('What is your name? ')
