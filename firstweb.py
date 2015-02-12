@@ -1,9 +1,18 @@
-hello_template = "templates/hello_template.html"
+template = "templates/quotient.html"
 
 def main():
-    name = input('What is your name? ')
-    content = fileToStr(hello_template).format(**locals())
+    num1 = input('Input an integer: ')
+    num2 = input('Input another integer: ')
+    content = processInput(num1,num2)
     browselocal(content)
+
+def processInput(numStr1, numStr2):
+    num1 = int(numStr1)
+    num2 = int(numStr2)
+    intquot = num1//num2
+    remainder = num1%num2
+    floating = num1/num2
+    return fileToStr(template).format(**locals())
 
 def fileToStr(filename):
     file = open(filename, 'r')
